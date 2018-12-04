@@ -40,7 +40,7 @@ $sql3 =
   `content` longtext NOT NULL,
   `url` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
-  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createtime` datetime NOT NULL,
   `updatetime` datetime NOT NULL,
   `publishtime` datetime NOT NULL,
   `featuredimage` varchar(255) NOT NULL,
@@ -60,7 +60,7 @@ $sql4 =
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `subject` varchar(255) NOT NULL,
-  `submittime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `submittime` datetime NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
@@ -75,13 +75,10 @@ $sql5 =
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
- 
---
--- Dumping data for table `settings`
---
- 
-INSERT INTO `settings` (`id`, `name`, `value`) VALUES
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+
+$sql6 =
+"INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 (1, 'logo', 'img/site-logo.png'),
 (2, 'ad', 'your ad code here'),
 (3, 'perpage', '2'),
@@ -93,7 +90,7 @@ ALTER TABLE `settings`
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;";
   
-$queries = [$sql1, $sql2, $sql3, $sql4, $sql5]; 
+$queries = [$sql1, $sql2, $sql3, $sql4, $sql5, $sql6]; 
 
 foreach($queries as $q => $sql){
 if (mysqli_query($connection, $sql)) {
