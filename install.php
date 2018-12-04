@@ -8,7 +8,9 @@ if(!$connection) {
 	die("Connection Failed: " . mysqli_connect_error());
 }
 
-$sql =
+$errors = [];
+
+$sql1 =
 "CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(255) NOT NULL,
@@ -19,9 +21,9 @@ $sql =
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 
   
-$sql .=
+$sql2 =
 " CREATE TABLE `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `caturl` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -29,7 +31,7 @@ $sql .=
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ";  
 
-$sql .=
+$sql3 =
 " CREATE TABLE `content` (
   `id` int(11) NOT NULL,
   `catid` varchar(255) NOT NULL,
@@ -51,7 +53,7 @@ ALTER TABLE `content`
 ALTER TABLE `content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;";
 
-$sql .= 
+$sql4 = 
 " CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
@@ -68,7 +70,7 @@ ALTER TABLE `comments`
 ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;";
   
-$sql .=
+$sql5 =
 " CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -91,10 +93,13 @@ ALTER TABLE `settings`
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;";
   
-if (mysqli_query($connection, $sql)) {
-    echo "Tables created successfully";
-} else {
-    echo "Error creating tables: " . mysqli_error($connection);
-}
+$queries = [$sql1, $sql2, $sql3, $sql4, $sql5]; 
 
+foreach($queries as $q => $sql){
+if (mysqli_query($connection, $sql)) {
+    echo "Table $q created successfully";
+} else {
+    echo "Error creating table $q: " . mysqli_error($connection);
+}
+}
 mysqli_close($connection);
