@@ -97,9 +97,9 @@ $queries = [$sql1, $sql2, $sql3, $sql4, $sql5];
 
 foreach($queries as $q => $sql){
 if (mysqli_query($connection, $sql)) {
-    echo "Table $q created successfully";
+    echo "Table $q created successfully <br />";
 } else {
-    echo "Error creating table $q: " . mysqli_error($connection);
+    echo "Error creating table $q: " . mysqli_error($connection) . "<br />";
 }
 }
 mysqli_close($connection);
