@@ -20,7 +20,7 @@ $sql =
 
   
 $sql .=
-"CREATE TABLE `category` (
+" CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(255) NOT NULL,
   `caturl` varchar(255) NOT NULL,
@@ -30,7 +30,7 @@ $sql .=
 ";  
 
 $sql .=
-"CREATE TABLE `content` (
+" CREATE TABLE `content` (
   `id` int(11) NOT NULL,
   `catid` varchar(255) NOT NULL,
   `subcatid` varchar(255) NOT NULL,
@@ -52,7 +52,7 @@ ALTER TABLE `content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;";
 
 $sql .= 
-"CREATE TABLE `comments` (
+" CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -69,7 +69,7 @@ ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;";
   
 $sql .=
-"CREATE TABLE `settings` (
+" CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `value` varchar(255) NOT NULL
