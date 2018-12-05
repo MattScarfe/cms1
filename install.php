@@ -101,4 +101,5 @@ if (mysqli_query($connection, $sql)) {
     echo "Error creating table $q: " . mysqli_error($connection) . "<br />";
 }
 }
+
 mysqli_close($connection);
