@@ -10,7 +10,8 @@ if(!$connection) {
 
 $errors = [];
 
-$sql1 =
+$queries = [
+
 "CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(255) NOT NULL,
@@ -18,21 +19,20 @@ $sql1 =
   `password` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;",
 
   
-$sql2 =
-" CREATE TABLE `category` (
+"CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `caturl` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-";  
+",
 
-$sql3 =
-" CREATE TABLE `content` (
+
+"CREATE TABLE `content` (
   `id` int(11) NOT NULL,
   `catid` varchar(255) NOT NULL,
   `subcatid` varchar(255) NOT NULL,
@@ -45,16 +45,18 @@ $sql3 =
   `publishtime` datetime NOT NULL,
   `featuredimage` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
- 
-ALTER TABLE `content`
-  ADD PRIMARY KEY (`id`);
- 
-ALTER TABLE `content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;";
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;",
 
-$sql4 = 
-" CREATE TABLE `comments` (
+
+"ALTER TABLE `content`
+  ADD PRIMARY KEY (`id`);",
+  
+
+"ALTER TABLE `content`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;",
+
+
+"CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -62,35 +64,35 @@ $sql4 =
   `subject` varchar(255) NOT NULL,
   `submittime` datetime NOT NULL,
   `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;",
  
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`);
+"ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);",
  
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;";
+"ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;",
   
-$sql5 =
-" CREATE TABLE `settings` (
+
+"CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;",
 
-$sql6 =
+
 "INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 (1, 'logo', 'img/site-logo.png'),
 (2, 'ad', 'your ad code here'),
 (3, 'perpage', '2'),
-(4, 'sitename', 'Coding Cyber');
+(4, 'sitename', 'Coding Cyber');",
  
-ALTER TABLE `settings`
-  ADD PRIMARY KEY (`id`);
+"ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);",
  
-ALTER TABLE `settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;";
-  
-$queries = [$sql1, $sql2, $sql3, $sql4, $sql5, $sql6]; 
+"ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;",
+];
+
 
 foreach($queries as $q => $sql){
 if (mysqli_query($connection, $sql)) {
