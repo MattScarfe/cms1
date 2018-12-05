@@ -1,5 +1,4 @@
 <?php
-
 // Initiate New Tables
 
 require('config/connect.php');
